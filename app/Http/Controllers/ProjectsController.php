@@ -7,14 +7,19 @@ use App\Project;
 
 class ProjectsController extends Controller
 {
-    function index()
+    public function index()
     {
     	$projects = Project::all();
 
     	return view('projects.index', compact('projects'));
     }
 
-    function store()
+    public function show(Project $project)
+    {
+    	return view('projects.show', compact('project'));
+    }
+
+    public function store()
     {  			
 		Project::create(request()->validate([
             'title' => 'required',
