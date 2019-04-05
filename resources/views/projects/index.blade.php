@@ -1,11 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-</head>
-<body>
-	<h1>Birdboard</h1>
+@extends('layouts.app')
+
+@section('content')
+
+<div class="flex items-center mb-3">
+	<h1 class="mr-auto">Birdboard</h1>
+	<a href="/projects/create">Create New Project</a>
+</div>
 	<ul>
 		@foreach ($projects as $project)
 			<li>
@@ -13,5 +13,5 @@
 			</li>
 		@endforeach
 	</ul>
-</body>
-</html>
+
+@endsection
