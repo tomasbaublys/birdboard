@@ -15,16 +15,25 @@
 		<div class="lg:w-3/4 px-3 mb-6">
 			<div class="mb-8">
 				<h2 class="text-lg text-grey font-normal mb-3">Tasks</h2>
+
 				@foreach ($project->tasks as $task)
-					<div class="card">{{ $task->body }}</div>
+					<div class="card mb-3">{{ $task->body }}</div>
 				@endforeach
+
+				<div class="card mb-3">
+					<form action="{{ $project->path() . '/tasks' }}" method="post">
+						@csrf
+
+						<input placeholder="Begin adding tasks..." class="w-full" name="body">
+					</form>
+				</div>
 			</div>
 			<div>
 				<h2 class="text-lg text-grey font-normal mb-3">General Notes</h2>
 				<textarea class="card w-full" style="min-height: 180px">Lorem ipsum</textarea> 
 			</div>
 		</div>
-		<div class="lg:w-1/4 px-3">
+		<div class="lg:w-1/4 px-3 py-8">
 			@include ('projects.card')
 		</div>
 	</div>
