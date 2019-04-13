@@ -1,6 +1,8 @@
 <?php
 namespace App\Observers;
+
 use App\Project;
+
 class ProjectObserver
 {
     /**
