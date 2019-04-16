@@ -41,9 +41,21 @@ class Task extends Model
     public function recordActivity($description)
     {
         $this->activity()->create([
-            'project_id' => $this->project_id,
-            'description' => $description
+            'description' => $description,
+            'changes' => $this->activityChanges(),
+            'project_id' => class_basename($this) === 'Project' ? $this->id : $this->project_id
         ]);
+    }
+
+    protected function activityChanges()
+    {
+        return null;
+        if ($this->wasChanged()) {
+            return [
+                'before' => array_except(array_diff($this->old, $this->getAttributes()), 'updated_at'),
+                'after' => array_except($this->getChanges(), 'updated_at')
+            ];
+        }
     }
 
     public function activity()

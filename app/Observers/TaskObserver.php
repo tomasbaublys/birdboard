@@ -23,6 +23,6 @@ class TaskObserver
      */
     public function deleted(Task $task)
     {
-        $task-recordActivity('deleted_task');
+        $task->recordActivity('deleted_task');
     }
 }    
