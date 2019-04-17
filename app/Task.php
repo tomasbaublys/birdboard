@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
+    use RecordsActivity;
+
     protected $guarded = [];
 
     protected $touches = ['project'];
@@ -13,6 +15,8 @@ class Task extends Model
     protected $casts = [
         'completed' => 'boolean'
     ];
+
+    protected static $recordableEvents = ['created', 'deleted'];
     
     public function complete()
     {
@@ -36,26 +40,6 @@ class Task extends Model
     public function path()
     {
     	return "/projects/{$this->project->id}/tasks/{$this->id}";
-    }
-
-    public function recordActivity($description)
-    {
-        $this->activity()->create([
-            'description' => $description,
-            'changes' => $this->activityChanges(),
-            'project_id' => class_basename($this) === 'Project' ? $this->id : $this->project_id
-        ]);
-    }
-
-    protected function activityChanges()
-    {
-        return null;
-        if ($this->wasChanged()) {
-            return [
-                'before' => array_except(array_diff($this->old, $this->getAttributes()), 'updated_at'),
-                'after' => array_except($this->getChanges(), 'updated_at')
-            ];
-        }
     }
 
     public function activity()
