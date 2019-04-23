@@ -69,6 +69,10 @@ trait RecordsActivity
      */
     public function activity()
     {
+        if (get_class($this) === Project::class) {
+            return $this->hasMany(Activity::class)->latest();
+        }
+        
         return $this->morphMany(Activity::class, 'subject')->latest();
     }
     /**
