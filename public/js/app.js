@@ -1774,19 +1774,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      themes: {
+        'theme-light': '#f5f6f9',
+        'theme-dark': '#222'
+      },
       selectedTheme: 'theme-light'
     };
+  },
+  created: function created() {
+    this.selectedTheme = localStorage.getItem('theme') || 'theme-light';
   },
   watch: {
     selectedTheme: function selectedTheme() {
       document.body.className = document.body.className.replace(/theme-\w+/, this.selectedTheme);
+      localStorage.setItem('theme', this.selectedTheme);
     }
   }
 });
@@ -36835,31 +36839,24 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "flex items-center mr-8" }, [
-    _c("button", {
-      staticClass:
-        "rounded-full w-4 h-4 bg-default border mr-2 focus:outline-none",
-      class: { "border-accent": _vm.selectedTheme == "theme-light" },
-      staticStyle: { background: "#f5f6f9" },
-      on: {
-        click: function($event) {
-          _vm.selectedTheme = "theme-light"
+  return _c(
+    "div",
+    { staticClass: "flex items-center mr-8" },
+    _vm._l(_vm.themes, function(color, theme) {
+      return _c("button", {
+        staticClass:
+          "rounded-full w-4 h-4 bg-default border mr-2 focus:outline-none",
+        class: { "border-accent": _vm.selectedTheme == theme },
+        style: { backgroundColor: color },
+        on: {
+          click: function($event) {
+            _vm.selectedTheme = theme
+          }
         }
-      }
+      })
     }),
-    _vm._v(" "),
-    _c("button", {
-      staticClass:
-        "rounded-full w-4 h-4 bg-default border mr-2 focus:outline-none",
-      class: { "border-accent": _vm.selectedTheme == "theme-dark" },
-      staticStyle: { background: "#222" },
-      on: {
-        click: function($event) {
-          _vm.selectedTheme = "theme-dark"
-        }
-      }
-    })
-  ])
+    0
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
