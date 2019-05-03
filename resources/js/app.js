@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -26,6 +25,7 @@ Vue.use(VModal)
 
 Vue.component('theme-switcher', require('./components/ThemeSwitcher.vue').default);
 Vue.component('new-project-modal', require('./components/NewProjectModal.vue').default);
+Vue.component('dropdown', require('./components/Dropdown.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
