@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 /*
 |--------------------------------------------------------------------------
@@ -33,9 +33,6 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/home', 'HomeController@index')->name('home');
 });
 
-
+Route::get('events', 'EventController@index');
 
 Auth::routes();
-
-
- 
