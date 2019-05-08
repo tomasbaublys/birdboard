@@ -26,6 +26,24 @@ class EventController extends Controller
 
         $calendar = Calendar::addEvents($events); 
 
-        return view('mycalender', compact('calendar'));
+        return view('events', compact('calendar'));
+    }
+
+    public function create()
+    {
+        return view('events.create');
+    }
+
+    public function store()
+    {
+        $attributes = request()->validate([
+            'title' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required'
+        ]);
+
+        $event = create($attributes);
+
+        return redirect('events');
     }
 }

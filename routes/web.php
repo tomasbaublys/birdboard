@@ -33,6 +33,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/home', 'HomeController@index')->name('home');
 });
 
-Route::get('events', 'EventController@index');
+Route::get('/events', 'EventController@index');
+Route::get('/events/create', 'EventController@create');
+Route::post('/events', 'EventController@store');
 
 Auth::routes();
